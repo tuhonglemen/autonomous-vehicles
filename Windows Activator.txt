@@ -1,0 +1,29 @@
+@echo off
+powershell -Command "& { Add-Type -AssemblyName System.Windows.Forms; $title = 'Windows 10 ALL version activator'; [System.Windows.Forms.MessageBox]::Show('Supported products: `n- Windows 10 Home `n- Windows 10 Professional `n- Windows 10 Enterprise, Enterprise LTSB `n- Windows 10 Education', $title, 'OK', 'Information'); }"
+echo ************************************
+echo Windows 10 activation...
+
+set "keys=TX9XD-98N7V-6WMQ6-BX7FG-H8Q99 3KHY7-WNT83-DGQKR-F7HPR-844BM 7HNRX-D7KGG-3K4RQ-4WPJ4-YTDFH PVMJN-6DFY6-9CCP6-7BKTT-D3WVR W269N-WFGWX-YVC9B-4J6C9-T83GX MH37W-N47XK-V7XM9-C7227-GCQG9 NW6C2-QMPVW-D7KKK-3GKT6-VCFB2 2WH4N-8QGBV-H22JP-CT43Q-MDWWJ NPPR9-FWDCX-D2C8J-H872K-2YT43 DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4 WNMTR-4C88C-JK8YV-HQ7T2-76DF9 2F77B-TNFGY-69QQF-B8YKP-D69TJ"
+for %%K in (%keys%) do (
+    cscript //nologo c:\windows\system32\slmgr.vbs /ipk %%K >nul
+)
+
+echo ************************************ 
+echo Windows 10 activation...
+
+set "kms_servers=kms.chinancce.com NextLevel.uk.to GuangPeng.uk.to AlwaysSmile.uk.to kms.shuax.com"
+set "activated="
+for %%S in (%kms_servers%) do (
+    cscript //nologo c:\windows\system32\slmgr.vbs /skms %%S >nul
+    cscript //nologo c:\windows\system32\slmgr.vbs /ato | find /i "successfully" >nul && set "activated=1" && goto :reboot
+)
+
+:reboot
+if defined activated (
+    powershell -Command "& { Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Windows 10 activated successfully. Do you want to restart your PC now?', 'Activation Complete', 'YesNo', 'Information') }"
+    if %errorlevel% equ 6 (
+        shutdown.exe /r /t 00
+    )
+) else (
+    powershell -Command "& { Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Failed to activate Windows 10.', 'Activation Failed', 'OK', 'Error') }"
+)
